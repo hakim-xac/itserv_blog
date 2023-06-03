@@ -1,0 +1,147 @@
+<!-- templates/home.html -->
+{% extends 'blog/base.html' %}
+{% load static %}
+
+
+
+{% block top_from_category_posts %}
+		{% if last_posts|length == 0 %}
+			<img src="{% static 'images/dipper_ups.jpg' %}" alt="">
+		{% else %}
+		{% for posts in data_from_groups %}
+          <div class="single_post_content">	
+			{% if posts|length %}
+		    {% with posts|random as random_post %}
+            <h2><span>{{ random_post.group }}</span></h2>
+            <div class="single_post_content_left">
+              <ul class="business_catgnav  wow fadeInDown">
+                <li>
+				
+				
+                  <figure class="bsbig_fig"> <a href="#{{ random_post.id }}" class="featured_img"> 
+				  {% if random_post.image %}
+				  <img alt="" src="{{ random_post.image }}">
+				  {% else %}
+				  <img alt="" src="{% static 'images/noimg.jpg' %}">ffffffffffffffff
+				  {% endif %}
+				  <span class="overlay"></span> </a>
+                    <figcaption> <a href="#{{ random_post.id }}">{{ random_post }}</a> </figcaption>
+                    <p>{{ random_post.header|truncatechars:15 }}</p>
+                  </figure>
+                </li>
+              </ul>
+            </div>
+			{% endwith %}
+			{% endif %}
+			
+            <div class="single_post_content_right">
+              <ul class="spost_nav">
+				{% for post in posts %}
+					<li>
+					  <div class="media wow fadeInDown"> <a href="#{{ post.id }}" class="media-left"> <img alt="" src="{% static 'images/post_img1.jpg' %}"> </a>
+						<div class="media-body"> <a href="#{{ post.id }}" class="catg_title"> {{post}}</a> </div>
+					  </div>
+					</li>				
+				{% endfor %}
+              </ul>
+            </div>
+          </div>
+		  {% endfor %}
+		  {% endif %}
+		  
+{% endblock %}
+
+
+{% block header_block %}
+          <div class="header_top_left">
+            <ul class="top_nav">
+              <li><a href="/">На главную</a></li>
+              <li><a href="/about">обо мне</a></li>
+              <li><a href="contacts">Контакты</a></li>
+            </ul>
+          </div>
+          <div class="header_top_right">
+            <p>{% now "l, F d, Y | H:i" %}</p>
+          </div>
+      
+{% endblock %}
+
+{% block navigation %}
+          <li class="active"><a href="index.html"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+          <!--<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>-->
+            <!--<ul class="dropdown-menu" role="menu">-->
+              <!--<li><a href="#">Android</a></li>-->
+              <!--<li><a href="#">Samsung</a></li>-->
+              <!--<li><a href="#">Nokia</a></li>-->
+              <!--<li><a href="#">Walton Mobile</a></li>-->
+              <!--<li><a href="#">Sympony</a></li>-->
+            <!--</ul>-->
+          <!--</li>-->
+          <li><a href="pages/contact.html">Контакты</a></li>
+          <li><a href="pages/404.html">Обо мне</a></li>
+
+{% endblock %}
+
+
+{% block last_posts_header %}
+			{% for post in last_posts %}
+				<li><a href="#{{ post.id }}"><img src="{% static 'images/news_thumbnail3.jpg' %}" alt="">{{ post.title }}</a></li>
+			{% endfor %}  
+{% endblock %}
+
+
+{% block last_posts_left %}
+{% if last_posts|length == 0 %}
+			<img src="{% static 'images/dipper-ups.jpg' %}" alt="">
+			{% else %}
+			{% for post in last_posts %}
+            <div class="single_iteam"> <a href="#{{ post.id }}"> <img src="{% static 'images/slider_img4.jpg' %}" alt=""></a>
+              <div class="slider_article">
+                <h2><a class="slider_tittle" href="#{{ post.id }}">{{ post.title }}</a></h2>
+                <p>{{ post.text }}</p>
+              </div>
+            </div>
+		    {% endfor %} 
+		    {% endif %}
+{% endblock %}
+{% block last_posts_right %}  
+			{% if last_posts|length == 0 %}
+			<li><img src="{% static 'images/dipper-ups100_100.jpg' %}" alt=""></li>
+			{% else %}
+			{% for post in last_posts %}
+				<li>
+                <div class="media"> <a href="#{{ post.id }}" class="media-left"> <img alt="" src="{% static 'images/post_img1.jpg' %}"> </a>
+                  <div class="media-body"> <a href="{{ post.title }}" class="catg_title"> {{ post.title }}</a> </div>
+                </div>
+              </li>
+			{% endfor %}
+		    {% endif %}
+{% endblock %}
+
+{% block popular_posts %}
+			{% if last_posts|length == 0 %}
+			<li><img src="{% static 'images/dipper-ups100_100.jpg' %}" alt=""></li>
+			{% else %}
+			{% for post in top_rating_posts %}
+			<li>
+                <div class="media wow fadeInDown"> <a href="#{{ post.id }}" class="media-left"> <img alt="" src="{% static 'images/post_img1.jpg' %}"> </a>
+                  <div class="media-body"> <a href="#{{ post.id }}" class="catg_title">{{ post.title }}</a> </div>
+                </div>
+              </li>
+			{% empty %}
+				<li><img src="{% static 'images/dipper-ups100_100.jpg' %}" alt=""></li>
+			{% endfor %}
+			{% endif %}	
+{% endblock %}
+
+{% block advertising %}
+            <a class="sideAdd" href="#"><img src="{% static 'images/add_img.jpg' %}" alt=""></a>
+{% endblock %}
+
+
+{% block footer %}
+      <p class="copyright">Copyright &copy; 2045 <a href="index.html">NewsFeed</a></p>
+      <p class="developer">Developed By Wpfreeware</p>
+{% endblock %}
+
+
