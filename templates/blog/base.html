@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>NewsFeed</title>
+<title>{{donain}}</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'default_theme/css/jquery.fancybox.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'default_theme/css/theme.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'default_theme/css/style.css' %}">
+<link rel="icon" type="text/css" href="{% static 'default_theme/css/images/logo_ico.ico' %}">
 
 <!--[if lt IE 9]>
 <script src="{% static 'default_theme/js/html5shiv.min.js' %}"></script>
@@ -30,41 +31,26 @@
 </div>
 <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 <div class="container">
-  <header id="header">
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="header_top">
-		{% block header_block %}{% endblock %}
-        </div>
-      </div>
-      <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="header_bottom">		
-          <div class="logo_area"><a href="/" class="logo"><img src="{% static 'default_theme/css/images/logo2.jpg' %}" alt=""></a></div>
-          <div class="add_banner"><a href="/"><img src="{% static 'images/addbanner_728x90_V1.jpg' %}" alt=""></a></div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <section id="navArea">
-    <nav class="navbar navbar-inverse" role="navigation">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav main_nav">
-		{% block navigation %}{% endblock %}
-        </ul>
-      </div>
-    </nav>
-  </section>
+	{% include 'blog/header.html' %} 
+    <section id="navArea">
+		<nav class="navbar navbar-inverse" role="navigation">
+		  <div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+		  </div>
+		  <div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav main_nav">
+			{% include 'blog/navigation.html' %}
+			</ul>
+		  </div>
+		</nav>
+    </section>
 
 <section id="newsSection">
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <div class="latest_newsarea"> <span>Последние посты</span>
-          <ul id="ticker01" class="news_sticker">			
-			{% block last_posts_header %}{% endblock %}
+          <ul id="ticker01" class="news_sticker">
+		  {% include 'blog/last_posts_header.html' %}
           </ul>		
           <div class="social_area">
             <ul class="social_nav">
@@ -82,58 +68,34 @@
       </div>
     </div>
   </section>
-
-<section id="sliderSection">
-    <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="slick_slider">			
-		{% block last_posts_left %}{% endblock %}	
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-4">
-        <div class="latest_post">
-          <h2><span>Последние посты</span></h2>
-          <div class="latest_post_container">
-            <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
-            <ul class="latest_postnav">              
-            {% block last_posts_right %}{% endblock %} 
-            </ul>
-            <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    {% if active_page == 'home' %}
+		{% include 'blog/top_slider_is_home.html' %}
+	{% endif %}	
 
   <section id="contentSection">
-    <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="left_content">		
-          {% block top_from_category_posts %} {% endblock %}
-        </div>
-      </div>
+    <div class="row">	
+		<div class="col-lg-8 col-md-8 col-sm-8">
+			<div class="left_content">			
+			{% block content %}{% endblock %}
+			</div>
+		</div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <aside class="right_content">
 		<div class="single_sidebar">
             <h2><span>Популярные посты</span></h2>
             <ul class="spost_nav">
-			{% block popular_posts %} {% endblock %}
+			{% include 'blog/popular_posts.html' %} 
             </ul>
         </div>
 		<div class="single_sidebar wow fadeInDown">
             <h2><span>Реклама</span></h2>
-			{% block advertising %} {% endblock %}
+			{% include 'blog/advertising.html' %} 
 		</div>
         </aside>
       </div>
     </div>
   </section>
-    <footer id="footer">
-    <div class="footer_bottom">
-      {% block footer %} {% endblock %}
-    </div>
-  </footer>
-          
+{% include 'blog/footer.html' %}          
 </div>
 
 <script src="{% static 'default_theme/js/jquery.min.js' %}"></script> 

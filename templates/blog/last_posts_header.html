@@ -1,0 +1,10 @@
+{% load static %}
+{% for post in last_posts %}
+	<li><a href="{% url 'post_detail' pk=post.pk %}">
+	{% if post.image %}
+		<img alt="" src="{{ post.image }}"alt="">
+	{% else %}
+		<img alt="" src="{% static 'images/noimg.jpg' %}"alt="">
+	{% endif %}
+	{{ post.title }}</a></li>
+{% endfor %}

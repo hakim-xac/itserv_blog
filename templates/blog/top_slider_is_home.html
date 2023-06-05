@@ -1,0 +1,55 @@
+{% load static %}
+  <section id="sliderSection">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="slick_slider">			
+		{% if last_posts|length == 0 %}
+			<img src="{% static 'images/dipper-ups.jpg' %}" alt="">
+			{% else %}
+			{% for post in last_posts %}
+			<div class="single_iteam"> <a href="{% url 'post_detail' post.id %}">
+			{% if post.image %}
+				<img alt="" src="{{ post.image }}">
+			{% else %}
+				<img alt="" src="{% static 'images/noimg.jpg' %}">
+			{% endif %}
+			</a>
+			  <div class="slider_article">
+				<h2><a class="slider_tittle" href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+				<p>{{ post.text }}</p>
+			  </div>
+			</div>
+			{% endfor %} 
+		{% endif %}		
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="latest_post">
+          <h2><span>Последние посты</span></h2>
+          <div class="latest_post_container">
+            <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
+            <ul class="latest_postnav">              
+				{% if last_posts|length == 0 %}
+				<li><img src="{% static 'images/dipper-ups100_100.jpg' %}" alt=""></li>
+				{% else %}
+				{% for post in last_posts %}
+					<li>
+					<div class="media"> <a href="{% url 'post_detail' post.id %}" class="media-left">
+					{% if post.image %}
+						<img alt="" src="{{ post.image }}">
+					{% else %}
+						<img alt="" src="{% static 'images/noimg.jpg' %}">
+					{% endif %}
+					</a>
+					  <div class="media-body"> <a href="{{ post.title }}" class="catg_title"> {{ post.title }}</a> </div>
+					</div>
+				  </li>
+				{% endfor %}
+				{% endif %}
+            </ul>
+            <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

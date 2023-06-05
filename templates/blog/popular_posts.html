@@ -1,0 +1,21 @@
+{% load static %}
+{% if last_posts|length == 0 %}
+	<li><img src="{% static 'images/dipper-ups100_100.jpg' %}" alt=""></li>
+	{% else %}
+	{% for post in top_rating_posts %}
+	<li>
+		<div class="media wow fadeInDown"> <a href="{% url 'post_detail' post.id %}" class="media-left">
+		{% if post.image %}
+			<img alt="" src="{{ random_post.image }}" alt="">
+		{% else %}
+			<img alt="" src="{% static 'images/noimg.jpg' %}">
+		{% endif %}	</a>
+		  <div class="media-body"> <a href="{% url 'post_detail' post.id %}" class="catg_title">{{ post.title }}</a> </div>
+		</div>
+	  </li>
+	{% empty %}
+		<li>
+		<img src="{% static 'images/dipper-ups100_100.jpg' %}" alt="">
+		</li>
+	{% endfor %}
+	{% endif %}
