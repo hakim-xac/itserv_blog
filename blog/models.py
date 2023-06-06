@@ -14,7 +14,7 @@ class Post(models.Model):
     rating = models.IntegerField(null=False, default=0, blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     group = models.ForeignKey(GroupsPosts, on_delete=models.CASCADE)
-    image = models.ImageField(null=True, default='', blank=True, upload_to='static/media/photos/%Y/%m/%d')
+    image = models.ImageField(null=True, default='', blank=True, upload_to='photos/%Y/%m/%d')
     title = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)

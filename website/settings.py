@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!m0c9-fv%u0x4i=4yijl&ld4$94e)qpkmst=*m(kec*&)%6bgn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'itserv.space']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'itserv.space', '192.168.0.11']
 
 
 # Application definition
@@ -118,7 +118,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'blog',STATIC_URL)
+STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -126,6 +126,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'blog',STATIC_URL)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-MEDIA_DIR = os.path.join(BASE_DIR, 'blog')
-MEDIA_ROOT = MEDIA_DIR
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
+
+TITLE_PAGE_STATIC = 'ITSERV.SPACE'

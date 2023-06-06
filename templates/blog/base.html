@@ -3,7 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>{{donain}}</title>
+<title>
+{% if title_page and title_page_static %}
+{{title_page}} | {{title_page_static}}
+{% else %}
+Приветствуем вас! ;)
+{% endif %}
+</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">

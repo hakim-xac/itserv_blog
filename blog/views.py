@@ -4,7 +4,8 @@ from .models import Post, GroupsPosts
 
 from django.template import loader
 from django.http import HttpResponse
-        
+from django.conf import settings
+
  
 def main_page(request):
     all_posts = Post.objects.all()
@@ -24,6 +25,8 @@ def main_page(request):
         'all_groups': all_groups.all(),
         'top_rating_posts': top_rating_posts.all(),
         'active_page': 'home',
+        'title_page': 'Главная страница',        
+        'title_page_static': settings.TITLE_PAGE_STATIC,        
     }
     return HttpResponse(template.render(context, request))
     
@@ -34,7 +37,9 @@ def post_detail(request, pk):
     template = loader.get_template('blog/post.html')
     context = {
         'p': p,
-        'post' : post
+        'post' : post,        
+        'title_page': post.title,        
+        'title_page_static': settings.TITLE_PAGE_STATIC, 
     }
     return HttpResponse(template.render(context, request))
 

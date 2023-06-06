@@ -6,7 +6,7 @@
 	<li>
 		<div class="media wow fadeInDown"> <a href="{% url 'post_detail' post.id %}" class="media-left">
 		{% if post.image %}
-			<img alt="" src="{{ random_post.image }}" alt="">
+			<img alt="" src="{{ random_post.image.url }}" alt="">
 		{% else %}
 			<img alt="" src="{% static 'images/noimg.jpg' %}">
 		{% endif %}	</a>

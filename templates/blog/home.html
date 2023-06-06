@@ -17,7 +17,7 @@
 				<li>
 					<figure class="bsbig_fig"> <a href="{% url 'post_detail' random_post.id %}" class="featured_img">
 						{% if random_post.image %}
-							<img alt="" src="{{ random_post.image }}">
+							<img alt="" src="{{ random_post.image.url }}">
 						{% else %}
 							<img alt="" src="{% static 'images/noimg.jpg' %}">ffffffffffffffff
 						{% endif %}
@@ -37,7 +37,7 @@
 				<li>
 				  <div class="media wow fadeInDown"> <a href="{% url 'post_detail' post.id %}" class="media-left">
 					{% if post.image %}
-						<img alt="" src="{{ post.image }}">
+						<img alt="" src="{{ post.image.url }}">
 					{% else %}
 						<img alt="" src="{% static 'images/noimg.jpg' %}">
 					{% endif %}				  
