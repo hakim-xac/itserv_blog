@@ -13,7 +13,7 @@
 	<div class="post_commentbox">
 	<a href="#"><i class="fa fa-user"></i>{{post.author}}</a> <span><i class="fa fa-calendar"></i>{{post.published_date}}</span> <a href="#"><i class="fa fa-tags"></i>{{post.group}}</a> </div>
 	<div class="single_page_content">
-	{{post.text}}
+	{{post.content|safe}}
 	</div>
 	<div class="social_link">
 	<ul class="sociallink_nav">

@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-
+from tinymce.models import HTMLField
     
 class GroupsPosts(models.Model):
     name = models.CharField(max_length=100, null=False, default='')  
@@ -16,7 +16,8 @@ class Post(models.Model):
     group = models.ForeignKey(GroupsPosts, on_delete=models.CASCADE)
     image = models.ImageField(null=True, default='', blank=True, upload_to='photos/%Y/%m/%d')
     title = models.CharField(max_length=200)
-    text = models.TextField()
+    #text = models.TextField()
+    content = HTMLField(default='')
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
 
