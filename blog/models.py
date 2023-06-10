@@ -20,6 +20,7 @@ class Post(models.Model):
     content = HTMLField(default='')
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    is_published = models.BooleanField(default=False, null=False)
 
 
     @property

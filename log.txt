@@ -1,0 +1,11 @@
+Watching for file changes with StatReloader
+[11/Jun/2023 01:59:19] "GET / HTTP/1.1" 200 9112
+[11/Jun/2023 01:59:19] "GET /media/photos/2023/06/11/polymorphism.jpg HTTP/1.1" 304 0
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 11, 2023 - 01:59:17
+Django version 4.2.1, using settings 'website.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
