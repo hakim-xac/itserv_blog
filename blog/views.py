@@ -9,7 +9,7 @@ from django.conf import settings
  
 def main_page(request):
     all_posts = Post.objects.filter(is_published=True)
-    data_from_groups = [ Post.objects.filter(group = gr)[0:5] for gr in GroupsPosts.objects.all()]
+    data_from_groups = [ Post.objects.filter(group = gr, is_published=True)[0:5] for gr in GroupsPosts.objects.all()]
 
     all_groups = GroupsPosts.objects.all()
     top_rating_posts = Post.objects.filter(is_published=True).order_by('-rating')[0:5]
