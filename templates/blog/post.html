@@ -1,18 +1,18 @@
 <!-- templates/post.html -->
 {% extends 'blog/base.html' %}
-{% load static %}
 {% block content %}
 
+{% if post.is_published %}
 <div class="single_page">
 	<ol class="breadcrumb">
-		<li><a href="/">Home</a></li>
-		<li><a href="#">Technology</a></li>
-		<li class="active">Mobile</li>
+		<li><a href="/">Главная</a></li>
+		<li class="active">{{post.title}}</li>
 	</ol>
-	<h1>{{post.title}}</h1>
+	<h1>{{post.title}}</h1>	
 	<div class="post_commentbox">
 	<a href="#"><i class="fa fa-user"></i>{{post.author}}</a> <span><i class="fa fa-calendar"></i>{{post.published_date}}</span> <a href="#"><i class="fa fa-tags"></i>{{post.group}}</a> </div>
 	<div class="single_page_content">
+	{% if post.image %} <p><img alt="" src="{{ post.image.url }}"></p> {% endif %}
 	{{post.content|safe}}
 	</div>
 	<div class="social_link">
@@ -25,5 +25,5 @@
 	</ul>
 	</div>
 </div>
-
+{% endif %}
 {% endblock %}

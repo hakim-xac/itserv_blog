@@ -26,7 +26,8 @@ def main_page(request):
         'top_rating_posts': top_rating_posts.all(),
         'active_page': 'home',
         'title_page': 'Главная страница',        
-        'title_page_static': settings.TITLE_PAGE_STATIC,        
+        'title_page_static': settings.TITLE_PAGE_STATIC, 
+        'static_url': 'http://static.itserv.space/',         
     }
     return HttpResponse(template.render(context, request))
     
@@ -34,12 +35,15 @@ def main_page(request):
 def post_detail(request, pk):
     p = get_object_or_404(Post, pk=pk)
     post = Post.objects.get(id=pk)
+    top_rating_posts = Post.objects.filter(is_published=True).order_by('-rating')[0:5]
     template = loader.get_template('blog/post.html')
     context = {
         'p': p,
-        'post' : post,        
+        'post' : post,   
+        'top_rating_posts': top_rating_posts.all(),
         'title_page': post.title,        
         'title_page_static': settings.TITLE_PAGE_STATIC, 
+        'static_url': 'http://static.itserv.space/',  
     }
     return HttpResponse(template.render(context, request))
 
