@@ -1,4 +1,5 @@
 <!-- templates/base.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@
 <link rel="stylesheet" type="text/css" href="{{ static_url }}default_theme/css/jquery.fancybox.css">
 <link rel="stylesheet" type="text/css" href="{{ static_url }}default_theme/css/theme.css">
 <link rel="stylesheet" type="text/css" href="{{ static_url }}default_theme/css/style.css">
-<link rel="stylesheet" type="text/css" href="{{ static_url }}tinymce/tinymce.min.js">
+<link rel="stylesheet" type="text/css" href="{% static 'tinymce/tinymce.min.js' %}">
 <link rel="icon" type="text/css" href="{{ static_url }}default_theme/css/images/logo_ico.ico">
 <!--[if lt IE 9]>
 <script src="{{ static_url }}default_theme/js/html5shiv.min.js"></script>
